@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- dùng cho thẻ code -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-okaidia.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+body {
+  background-color: #278ea5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+    .container {
+        width: 70%;
+        overflow-x: auto;
+    }
+
+    .language {
+        color: white;
+        background-color: #272822;
+        padding: 20px 16px;
+        border-radius: 6px;
+        text-align: right;
+    }
+
+    .code-wrapper {
+    position: relative;
+    }
+
+    /* .code-wrapper pre {
+    background-color: #071e3d;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 0 0 5px 5px;
+    } */
+
+    #copy-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 7px;
+        background-color: #272822;
+        border: none;
+        outline: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease-in;
+        opacity: 0;
+    }
+
+    #copy-button:hover {
+        background-color: #1f428790;
+    }
+
+    .code-wrapper:hover #copy-button {
+        opacity: 1;
+    }
+
+    #copy-success {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #1f4287;
+        color: white;
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 5px;
+        display: none;
+    }
+
+    #copy-success.show-message {
+        display: inline-block;
+    }
+
+</style>
+
+<body>
+    <div class="container">
+        <p class="language" id="language-copy">JavaScript</p>
+        <div class="code-wrapper">
+<pre class="line-numbers">
+<code class="language-js" id="code">&lt;script&gt;
+    const button = document.querySelector(&apos;.copy-button&apos;);
+    const code = document.querySelector(&apos;code&apos;);
+
+    button.addEventListener(&apos;click&apos;, () =&gt; {
+    // Tạo một textarea để chứa nội dung cần copy
+    const textarea = document.createElement(&apos;textarea&apos;);
+    textarea.value = code.textContent;
+    document.body.appendChild(textarea);
+        
+    // Chọn nội dung trong textarea
+    textarea.select();
+        
+    // Sao chép nội dung vào clipboard
+    document.execCommand(&apos;copy&apos;);
+        
+    // Xóa textarea sau khi hoàn tất
+    document.body.removeChild(textarea);
+});
+
+&lt;/script&gt;</code>
+</pre>
+            <button id="copy-button">Copy</button>
+        </div>
+        <span id="copy-success">Bạn đã copy code :)</span>
+    </div>
+
+      
+    
+
+      <!-- Dùng cho thẻ pre - code -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  hljs.initHighlightingOnLoad();
+
+  const codeBlock = document.getElementById('code');
+  const copyButton = document.getElementById('copy-button');
+  const copySuccess = document.getElementById('copy-success');
+
+  const copyTextHandler = () => {
+    const text = codeBlock.innerText;
+
+    // first version - document.execCommand('copy');
+    // var element = document.createElement('textarea');
+    // document.body.appendChild(element);
+    // element.value = text;
+    // element.select();
+    // document.execCommand('copy');
+    // document.body.removeChild(element);
+
+    // copySuccess.classList.add('show-message');
+    // setTimeout(() => {
+    //   copySuccess.classList.remove('show-message');
+    // }, 2500);
+
+    //   second version - Clipboard API
+    navigator.clipboard.writeText(text).then(
+      () => {
+        copySuccess.classList.add('show-message');
+        setTimeout(() => {
+          copySuccess.classList.remove('show-message');
+        }, 2500);
+      },
+      () => {
+        console.log('Error writing to the clipboard');
+      }
+    );
+  };
+
+  copyButton.addEventListener('click', copyTextHandler);
+});
+
+  </script>
+</body>
+</html>

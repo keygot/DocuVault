@@ -1,0 +1,94 @@
+
+/* Giao diện bài toán */
+
+#box {
+    margin: 0 auto;
+    width: 80%;
+    border: 2px solid blue;
+    border-radius: 7px;
+}
+.tieude {
+    padding: 10px 15px;
+    background: blue;
+    color: #fff;
+    font-weight: bold;
+}
+.noidung {
+    padding: 15px;
+    text-align: justify;
+}
+
+.text-right {
+text-align: right;
+padding-right: 0 !important;
+}
+
+/* Giao diện thẻ code */
+
+
+.container-code {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  
+  
+  /* .language-code {
+    color: white;
+    background-color: #272822;
+    padding: 20px 16px;
+    border-radius: 6px;
+    text-align: right;
+  } */
+  
+  .code-wrapper {
+  position: relative;
+  }
+  
+  /* .code-wrapper pre {
+  background-color: #071e3d;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 0 0 5px 5px;
+  } */
+  
+  #copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 7px;
+    background-color: #272822;
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    opacity: 0;
+  }
+  
+  #copy-button:hover {
+    background-color: #1f428790;
+  }
+  
+  .code-wrapper:hover #copy-button {
+    opacity: 1;
+  }
+  
+  #copy-success {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1f4287;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    display: none;
+  }
+  
+  #copy-success.show-message {
+    display: inline-block;
+  }
+  
